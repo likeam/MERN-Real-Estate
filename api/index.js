@@ -1,4 +1,10 @@
 import express from "express";
+import mongoose from "mongoose";
+
+mongoose
+  .connect("mongodb+srv://likeam99:kakakolo202@cluster0.f3cql.mongodb.net/")
+  .then(() => console.log("Mongoosedb Connect"))
+  .catch((error) => console.log("Error connecting", error));
 
 const app = express();
 
