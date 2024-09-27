@@ -13,23 +13,21 @@ import Header from "./components/Header";
 
 export default function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/listing/:listingId" element={<Listing />} />
-          <Route path="/search" element={<Search />} />
-          <Route element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/create-listing" element={<CreateListing />} />
-            <Route path="/updat-listing" element={<UpdateListing />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/listing/:listingId" element={<Listing />} />
+        <Route path="/search" element={<Search />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/updat-listing" element={<UpdateListing />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

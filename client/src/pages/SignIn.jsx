@@ -1,3 +1,4 @@
+import { set } from "mongoose";
 import { useState } from "react";
 import OAuth from "../components/OAuth";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,12 +17,10 @@ const SignIn = () => {
 
   const handleChange = (e) => {
     setformData({ ...formData, [e.target.id]: e.target.value });
-    console.log(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
     try {
       dispatch(signInStart());
@@ -31,7 +30,6 @@ const SignIn = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
 
       if (data.success == false) {
         dispatch(signInFailure(data.message));
@@ -69,7 +67,7 @@ const SignIn = () => {
           <OAuth />
         </form>
         <div className=" flex gap-2 mt-5">
-          <p>Don't have an account?</p>
+          <p> Don't have an account?</p>
           <Link to={"/sign-up"}>
             <span className=" text-blue-700">Sign In</span>
           </Link>
