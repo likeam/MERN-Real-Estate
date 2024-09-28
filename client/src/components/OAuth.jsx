@@ -1,9 +1,4 @@
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithRedirect,
-} from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from "../firebase";
 import { useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/user/userSlice";
@@ -18,7 +13,8 @@ const OAuth = () => {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
 
-      const result = await signInWithRedirect(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      console.log(result);
       const res = await fetch("/api/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -31,10 +27,13 @@ const OAuth = () => {
 
       const data = await res.json();
 
+      console.log(res);
+      console.log(data);
+
       dispatch(signInSuccess(data));
       navigate("/");
     } catch (error) {
-      console.log("Could not sing in Google", error);
+      console.log("Could not sign in", error);
     }
   };
 

@@ -2,14 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/userRoute.js";
 import dotenv from "dotenv";
-import path from "path";
 
 dotenv.config();
 
 import authRouter from "./routes/authRoute.js";
 
 mongoose
-  .connect("mongodb+srv://likeam99:kakakolo202@cluster0.f3cql.mongodb.net/")
+  .connect(process.env.MONGO)
   .then(() => console.log("Mongoosedb Connect"))
   .catch((error) => console.log("Error connecting", error));
 
