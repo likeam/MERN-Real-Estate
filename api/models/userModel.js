@@ -18,7 +18,8 @@ const userSchema = new mongoose.Schema(
     },
     avatar: {
       type: String,
-      default: "default.jpg",
+      default:
+        "https://images.pexels.com/photos/1912868/pexels-photo-1912868.jpeg",
     },
   },
   { timestamps: true }
