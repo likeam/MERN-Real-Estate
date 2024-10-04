@@ -19,7 +19,6 @@ const OAuth = () => {
       const provider = new GoogleAuthProvider();
       const auth = getAuth(app);
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
 
       const res = await fetch("/api/auth/google", {
         method: "POST",
@@ -33,10 +32,7 @@ const OAuth = () => {
         }),
       });
 
-      console.log(res);
-
       const data = await res.json();
-      console.log(data);
 
       dispatch(signInSuccess(data));
       navigate("/");
