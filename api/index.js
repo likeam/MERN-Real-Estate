@@ -1,11 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routes/userRoute.js";
+import authRouter from "./routes/authRoute.js";
+import listingRouter from "./routes/listingRoute.js";
+
 import dotenv from "dotenv";
 
 dotenv.config();
-
-import authRouter from "./routes/authRoute.js";
 
 mongoose
   .connect(process.env.MONGO)
@@ -21,6 +22,7 @@ app.listen(3000, () => {
 
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/listing", listingRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
