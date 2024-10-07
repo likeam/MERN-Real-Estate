@@ -127,14 +127,13 @@ const CreateListing = () => {
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
-        setError(error.message);
+        setError(data.message);
         return;
       }
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
-      console.log(error);
     }
   };
   const storeImage = async (file) => {
@@ -371,10 +370,7 @@ const CreateListing = () => {
                   </button>
                 </div>
               ))}
-            <button
-              disabled={loading || uploading}
-              className=" p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70"
-            >
+            <button className=" p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
               {loading ? "Creating ..." : "Create"}
             </button>
             {error && <p className=" text-red-700 text-sm">{error}</p>}
