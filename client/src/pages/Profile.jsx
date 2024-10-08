@@ -192,6 +192,10 @@ const Profile = () => {
             Create Listing
           </Link>
         </form>
+        <p className=" text-red-700 mt-5">{error ? error : ""}</p>
+        <p className=" text-gray-700 mt-5">
+          {updateSuccess ? "Profile updated Successfully! " : ""}
+        </p>
 
         <div className=" flex justify-between mt-5">
           <span
