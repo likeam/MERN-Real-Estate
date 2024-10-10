@@ -358,7 +358,7 @@ const CreateListing = () => {
                 >
                   <img
                     src={url}
-                    alt="listing img"
+                    alt="listing imgs"
                     className=" w-20 h-20 object-contain rounded-lg"
                   />
                   <button
