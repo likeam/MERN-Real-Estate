@@ -62,7 +62,7 @@ const Profile = () => {
     );
   };
 
-  const handleChane = (e) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
     console.log(formData);
   };
@@ -161,7 +161,7 @@ const Profile = () => {
             placeholder="Username"
             id="username"
             defaultValue={currentUser.userName}
-            onChange={handleChane}
+            onChange={handleChange}
             className=" border p-3 rounded-lg"
           />
           <input
@@ -169,14 +169,14 @@ const Profile = () => {
             placeholder="Email"
             id="email"
             defaultValue={currentUser.email}
-            onChange={handleChane}
+            onChange={handleChange}
             className="border p-3 rounded-lg"
           />
           <input
             type="password"
             placeholder="Password"
             id="password"
-            onChange={handleChane}
+            onChange={handleChange}
             className="border p-3 rounded-lg"
           />
           <button
