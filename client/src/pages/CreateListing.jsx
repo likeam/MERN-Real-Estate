@@ -315,7 +315,6 @@ const CreateListing = () => {
                   {formData.type === "rent" && (
                     <span className=" text-xs "> (Rs / month))</span>
                   )}
-                  <span className="text-xs">/Month</span>
                 </div>
               </div>
             </div>
