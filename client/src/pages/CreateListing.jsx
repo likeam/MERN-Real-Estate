@@ -106,36 +106,34 @@ const CreateListing = () => {
     e.preventDefault();
     try {
       if (formData.imageUrls.length < 1)
-        return setError(" You must upload at least one image ");
+        return setError("You must upload at least one image");
 
       if (+formData.regularPrice < +formData.discountPrice)
-        return setError("Discount price must be less than regular price");
+        return setError("Discount price cannot be higher than regular price");
 
       setLoading(true);
       setError(false);
 
       const res = await fetch("/api/listing/create", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          useRef: currentUser._id,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, userRef: currentUser._id }),
       });
+
       const data = await res.json();
       setLoading(false);
       if (data.success === false) {
         setError(data.message);
         return;
       }
+
       navigate(`/listing/${data._id}`);
     } catch (error) {
       setError(error.message);
       setLoading(false);
     }
   };
+
   const storeImage = async (file) => {
     return new Promise((resolve, reject) => {
       const storage = getStorage(app);
@@ -369,7 +367,10 @@ const CreateListing = () => {
                   </button>
                 </div>
               ))}
-            <button className=" p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70">
+            <button
+              disabled={loading || uploading}
+              className=" p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-90 disabled:opacity-70"
+            >
               {loading ? "Creating ..." : "Create"}
             </button>
             {error && <p className=" text-red-700 text-sm">{error}</p>}

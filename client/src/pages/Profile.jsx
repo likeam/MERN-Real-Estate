@@ -28,6 +28,7 @@ const Profile = () => {
   const [fileUploadError, setFileUploadError] = useState(false);
   const [formData, setFormData] = useState({});
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [showListingsError, setShowListingsError] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -123,6 +124,23 @@ const Profile = () => {
     }
   };
 
+  const handleShowListings = async () => {
+    try {
+      setShowListingsError(false);
+      const res = await fetch(`/api/user/listings/${currentUser._id}`);
+      const data = await res.json();
+
+      if (data.success === false) {
+        setShowListingsError(true);
+        return;
+      }
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+      setShowListingsError(true);
+    }
+  };
+
   return (
     <>
       <div className=" p-3 max-w-lg mx-auto">
@@ -192,10 +210,6 @@ const Profile = () => {
             Create Listing
           </Link>
         </form>
-        <p className=" text-red-700 mt-5">{error ? error : ""}</p>
-        <p className=" text-gray-700 mt-5">
-          {updateSuccess ? "Profile updated Successfully! " : ""}
-        </p>
 
         <div className=" flex justify-between mt-5">
           <span
@@ -211,10 +225,14 @@ const Profile = () => {
             Sign Out
           </span>
         </div>
-        {/* <p className=" text-red-700 mt-5">{error ? error : ""}</p> */}
+        <p className=" text-red-700 mt-5">{error ? error : ""}</p>
         <p className=" text-gray-700 mt-5">
           {updateSuccess ? "Profile updated Successfully! " : ""}
         </p>
+        <button onClick={handleShowListings} className=" text-green-700">
+          {" "}
+          Show Listing{" "}
+        </button>
       </div>
     </>
   );
